@@ -1,0 +1,46 @@
+.addBtn {
+    height: 50px;
+    text-align: center;
+    margin: 20px;
+    justify-content: center;
+}
+
+.working {
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    justify-items: center;
+}
+
+.workingBox {
+    width: 300px;
+    margin: 10px;
+    border: 5px aqua solid;
+    border-radius: 20px;
+
+}
+
+.title {
+    height: 30px;
+    border: blue solid 1px;
+    margin: 5px;
+}
+
+.content {
+    border: 1px blue solid;
+    margin: 5px;
+    height: 100px;
+}
+
+.working button {
+    margin: 10px 20px 10px 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+
+    border: 2px solid green;
+
+    background-color: white;
+    color: black;
+}
