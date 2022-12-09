@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Done } from './components/Done';
 import { Header } from './components/Header';
 import { Working } from './components/Working';
 import './app.css'
+import { InputBar } from './components/InputBar';
 
 function App() {
 
@@ -15,7 +15,16 @@ function App() {
     ]);
 
 
+
+  // 추가하기 버튼 클릭
   const onSubmitHandler = () => {
+    if (title == "") {
+      alert("제목 입력 해주세요"); return
+    }
+    if (content == "") {
+      alert("내용 입력 해주세요"); return;
+    }
+
     const todo = {
       title: title,
       content: content,
@@ -23,9 +32,12 @@ function App() {
       id: todoList.length + 1,
     }
     setTodoList([...todoList, todo])
-    console.log("todolist :", todoList)
+    setTitle("");
+    setContent("");
+
   }
 
+  // 완료 및 취소 버튼
   const onChangeHandler = (index) => {
     index.isDone = (index.isDone - 1) * -1;
     console.log(index)
@@ -34,6 +46,7 @@ function App() {
     setTodoList([...newTodoList, index])
   }
 
+  // 삭제 버튼
   const onDeleteHandler = (id) => {
     const newTodoList = todoList.filter((todo) => todo.id !== id)
 
@@ -43,14 +56,9 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <div>
-        <span className='addBtn'>제목</span><input className='addBtn' type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} placeholder="제목 입력 하세요."></input>
-        <span className='addBtn'>내용</span><input className='addBtn' type="text" value={content} onChange={(e) => { setContent(e.target.value) }} placeholder="내용 입력 하세요."></input>
-        <button className='addBtn' onClick={onSubmitHandler}>추가하기 </button>
-      </div>
-      <Working todoList={todoList} handleDelete={onDeleteHandler} handleChange={onChangeHandler} key={todoList.id}></Working>
-
-      <Done todoList={todoList} handleDelete={onDeleteHandler} handleChange={onChangeHandler} key={todoList.id}></Done>
+      <InputBar handleSubmit={onSubmitHandler} content={content} title={title} setContent={setContent} setTitle={setTitle}></InputBar>
+      <Working componentName="Working" btnName="삭제하기" todoList={todoList} handleDelete={onDeleteHandler} handleChange={onChangeHandler} key={todoList.id}></Working>
+      <Working componentName="Done" btnName="취소하기" todoList={todoList} handleDelete={onDeleteHandler} handleChange={onChangeHandler} key={todoList.id}></Working>
 
     </div >
   )
