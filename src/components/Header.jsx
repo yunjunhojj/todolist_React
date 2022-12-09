@@ -1,5 +1,5 @@
 export const Header = () => {
     return (
-        <h1> 숙제 하기 싫어요. TodoList </h1>
+        <h1> header 입니다 TodoList </h1>
     )
 }

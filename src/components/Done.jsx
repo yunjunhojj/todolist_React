@@ -8,7 +8,7 @@ export const Done = (props) => {
                 {props.todoList.map((todo, index) => {
                     if (todo.isDone) {
                         return (
-                            <div className='workingBox'>
+                            <div className='workingBox' key={index}>
                                 <div className='title'>제목 : {todo.title}</div>
                                 <div className='content'>내용 : {todo.content}</div>
                                 <button onClick={() => { props.handleDelete(props.todoList[index].id) }} value="삭제">삭제하기</button>
